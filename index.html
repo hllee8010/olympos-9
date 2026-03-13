@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>올림포스 영미 비문학 읽기 — 분석지 41~45</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #1a2744;
+  --navy-light: #243560;
+  --gold: #c8a84b;
+  --cream: #fdf8f0;
+  --text: #1e1e2e;
+  --gray: #6b7280;
+  --light: #f3f4f6;
+  --green: #16a34a;
+  --red: #dc2626;
+  --blue: #2563eb;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: "Noto Sans KR", sans-serif; background: var(--cream); color: var(--text); min-height: 100vh; }
+
+.site-header { background: var(--navy); color: white; padding: 18px 32px; display: flex; align-items: center; border-bottom: 3px solid var(--gold); }
+.site-header .logo { font-family: "Playfair Display", serif; font-size: 1.4rem; color: var(--gold); }
+.site-header .subtitle { font-size: 0.78rem; color: rgba(255,255,255,0.6); margin-top: 2px; font-weight: 300; }
+
+.layout { display: flex; min-height: calc(100vh - 67px); }
+
+.sidebar { width: 220px; background: var(--navy); flex-shrink: 0; padding: 20px 0; }
+.sidebar-label { font-size: 0.65rem; color: var(--gold); letter-spacing: 2px; text-transform: uppercase; padding: 0 20px 10px; font-weight: 700; }
+.passage-btn { display: block; width: 100%; text-align: left; padding: 12px 20px; background: none; border: none; color: rgba(255,255,255,0.65); cursor: pointer; font-family: "Noto Sans KR", sans-serif; font-size: 0.75rem; line-height: 1.5; border-left: 3px solid transparent; transition: all 0.2s; }
+.passage-btn:hover { background: rgba(255,255,255,0.05); color: white; }
+.passage-btn.active { background: rgba(200,168,75,0.15); color: var(--gold); border-left-color: var(--gold); font-weight: 700; }
+.passage-btn .num { font-family: "Playfair Display", serif; font-size: 1.1rem; display: block; }
+
+.main { flex: 1; overflow-x: hidden; }
+
+.tab-bar { background: white; border-bottom: 2px solid #e5e7eb; display: flex; overflow-x: auto; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+.tab-btn { padding: 14px 18px; background: none; border: none; border-bottom: 3px solid transparent; cursor: pointer; font-family: "Noto Sans KR", sans-serif; font-size: 0.78rem; font-weight: 500; color: var(--gray); white-space: nowrap; transition: all 0.2s; margin-bottom: -2px; }
+.tab-btn:hover { color: var(--navy); }
+.tab-btn.active { color: var(--navy); border-bottom-color: var(--gold); font-weight: 700; }
+
+.panel { padding: 32px; }
+.passage-title { font-family: "Playfair Display", serif; font-size: 1.5rem; color: var(--navy); margin-bottom: 6px; }
+.passage-meta { font-size: 0.75rem; color: var(--gold); font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 24px; }
+.section-hd { font-family: "Playfair Display", serif; font-size: 1.1rem; color: var(--navy); border-bottom: 2px solid var(--gold); padding-bottom: 8px; margin-bottom: 20px; margin-top: 32px; }
+.section-hd:first-of-type { margin-top: 0; }
+
+.full-text-box { border: 2px solid var(--navy); border-radius: 6px; padding: 24px 28px; font-family: "EB Garamond", serif; font-size: 1.05rem; line-height: 2; background: white; margin-bottom: 8px; }
+
+.sentence-card { background: white; border-radius: 8px; margin-bottom: 20px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.07); }
+.sentence-num { background: var(--navy); color: var(--gold); font-family: "Playfair Display", serif; font-size: 0.85rem; padding: 8px 16px; display: inline-block; }
+.sentence-eng { font-family: "EB Garamond", serif; font-size: 1.05rem; line-height: 1.9; padding: 14px 20px 10px; border-left: 3px solid var(--navy); margin: 12px 16px 0; background: #f8f9ff; border-radius: 0 4px 4px 0; }
+.sentence-slash { font-size: 0.82rem; color: var(--blue); padding: 6px 20px; font-style: italic; font-family: "EB Garamond", serif; }
+.sentence-kr { font-size: 0.85rem; color: #374151; padding: 4px 20px 10px; line-height: 1.7; }
+.grammar-list { padding: 10px 20px 16px; border-top: 1px dashed #e5e7eb; margin-top: 6px; }
+.grammar-item { font-size: 0.8rem; padding: 4px 0; color: #374151; line-height: 1.6; }
+.grammar-item .tag { display: inline-block; background: var(--gold); color: var(--navy); font-size: 0.68rem; font-weight: 700; padding: 1px 7px; border-radius: 3px; margin-right: 6px; }
+
+.vocab-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; margin-top: 16px; }
+.vocab-card { background: white; border-radius: 8px; padding: 14px 16px; border-left: 4px solid var(--gold); box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+.vocab-word { font-family: "EB Garamond", serif; font-size: 1.05rem; font-weight: 600; color: var(--navy); }
+.vocab-pos { font-size: 0.68rem; color: var(--gold); font-weight: 700; text-transform: uppercase; margin-left: 6px; }
+.vocab-meaning { font-size: 0.82rem; color: var(--gray); margin-top: 4px; }
+.vocab-example { font-size: 0.78rem; color: #374151; font-style: italic; margin-top: 4px; font-family: "EB Garamond", serif; }
+
+.grammar-section { background: white; border-radius: 8px; padding: 20px 24px; margin-bottom: 16px; border-left: 4px solid var(--navy); box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+.grammar-title { font-size: 0.85rem; font-weight: 700; color: var(--navy); margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+.grammar-title .badge { background: var(--navy); color: var(--gold); font-size: 0.7rem; padding: 2px 8px; border-radius: 3px; }
+.grammar-body { font-size: 0.83rem; line-height: 1.8; color: #374151; }
+.grammar-body .eng { font-family: "EB Garamond", serif; font-style: italic; color: var(--navy); }
+
+.translation-box { background: white; border-radius: 8px; padding: 24px 28px; line-height: 2.1; font-size: 0.92rem; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+.translation-box .sent { display: block; margin-bottom: 8px; }
+.sent-num-inline { display: inline-block; background: var(--navy); color: var(--gold); font-size: 0.65rem; font-weight: 700; padding: 1px 6px; border-radius: 3px; margin-right: 6px; vertical-align: middle; }
+
+.topic-box { background: var(--navy); color: white; border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; }
+.topic-label { font-size: 0.68rem; color: var(--gold); font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
+.topic-text { font-size: 1rem; line-height: 1.7; font-weight: 500; }
+.structure-box { background: white; border-radius: 8px; padding: 20px 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+.structure-item { display: flex; gap: 14px; padding: 10px 0; border-bottom: 1px dashed #e5e7eb; font-size: 0.84rem; line-height: 1.6; }
+.structure-item:last-child { border-bottom: none; }
+.structure-item .s-label { background: var(--gold); color: var(--navy); font-size: 0.68rem; font-weight: 700; padding: 2px 10px; border-radius: 3px; flex-shrink: 0; height: fit-content; margin-top: 2px; }
+
+.quiz-card { background: white; border-radius: 10px; padding: 24px; margin-bottom: 24px; box-shadow: 0 1px 4px rgba(0,0,0,0.07); }
+.quiz-num { font-size: 0.7rem; font-weight: 700; color: var(--gold); letter-spacing: 1px; margin-bottom: 4px; }
+.quiz-type { display: inline-block; background: var(--navy); color: white; font-size: 0.68rem; padding: 2px 8px; border-radius: 3px; margin-bottom: 12px; }
+.quiz-question { font-size: 0.9rem; line-height: 1.8; color: var(--text); margin-bottom: 16px; font-weight: 500; }
+.quiz-passage-ref { background: #f8f9ff; border-left: 3px solid var(--navy); padding: 10px 14px; font-family: "EB Garamond", serif; font-size: 0.92rem; line-height: 1.7; margin-bottom: 16px; border-radius: 0 4px 4px 0; color: #374151; }
+.quiz-options { display: flex; flex-direction: column; gap: 8px; }
+.quiz-option { display: flex; align-items: flex-start; gap: 10px; padding: 10px 14px; border: 1.5px solid #e5e7eb; border-radius: 6px; cursor: pointer; font-size: 0.85rem; line-height: 1.5; transition: all 0.18s; background: white; text-align: left; width: 100%; }
+.quiz-option:hover:not(.disabled) { border-color: var(--navy); background: #f8f9ff; }
+.quiz-option .opt-num { width: 22px; height: 22px; border-radius: 50%; background: var(--light); color: var(--navy); font-size: 0.72rem; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.quiz-option.correct { border-color: var(--green); background: #f0fdf4; }
+.quiz-option.correct .opt-num { background: var(--green); color: white; }
+.quiz-option.wrong { border-color: var(--red); background: #fef2f2; }
+.quiz-option.wrong .opt-num { background: var(--red); color: white; }
+.quiz-option.disabled { cursor: default; }
+.quiz-feedback { margin-top: 12px; font-size: 0.82rem; padding: 10px 14px; border-radius: 6px; display: none; line-height: 1.6; }
+.quiz-feedback.show { display: block; }
+.quiz-feedback.correct-fb { background: #f0fdf4; color: var(--green); border: 1px solid #bbf7d0; }
+.quiz-feedback.wrong-fb { background: #fef2f2; color: var(--red); border: 1px solid #fecaca; }
+.quiz-reset { margin-top: 16px; padding: 7px 16px; background: none; border: 1.5px solid var(--navy); border-radius: 5px; font-size: 0.78rem; color: var(--navy); cursor: pointer; font-family: "Noto Sans KR", sans-serif; font-weight: 500; }
+.quiz-reset:hover { background: var(--navy); color: white; }
+.score-bar { background: var(--navy); color: white; border-radius: 10px; padding: 16px 24px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; }
+.score-bar .score-label { font-size: 0.8rem; color: var(--gold); font-weight: 700; }
+.score-bar .score-val { font-family: "Playfair Display", serif; font-size: 1.5rem; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div>
+    <div class="logo">에듀케레 분석지</div>
+    <div class="subtitle">올림포스 영미 비문학 읽기 · Theme 41–45</div>
+  </div>
+</header>
+
+<div class="layout">
+<nav class="sidebar">
+  <div class="sidebar-label">지문 선택</div>
+  <button class="passage-btn active" onclick="selectPassage(0)"><span class="num">41</span>Delayed Gratification</button>
+  <button class="passage-btn" onclick="selectPassage(1)"><span class="num">42</span>Why We Donate Blood</button>
+  <button class="passage-btn" onclick="selectPassage(2)"><span class="num">43</span>Thou and You</button>
+  <button class="passage-btn" onclick="selectPassage(3)"><span class="num">44</span>Traditional to Digital Education</button>
+  <button class="passage-btn" onclick="selectPassage(4)"><span class="num">45</span>Nostalgia and Preference</button>
+</nav>
+
+<div class="main">
+  <div class="tab-bar" id="tabBar">
+    <button class="tab-btn active" onclick="selectTab(0)">① 전문</button>
+    <button class="tab-btn" onclick="selectTab(1)">② 문장분석</button>
+    <button class="tab-btn" onclick="selectTab(2)">③ 문법요소</button>
+    <button class="tab-btn" onclick="selectTab(3)">④ 핵심단어</button>
+    <button class="tab-btn" onclick="selectTab(4)">⑤ 전문해석</button>
+    <button class="tab-btn" onclick="selectTab(5)">⑥ 주제</button>
+    <button class="tab-btn" onclick="selectTab(6)">⑦ 변형문제</button>
+  </div>
+  <div id="contentArea"></div>
+</div>
+</div>
+
+<script>
+var passages = [
+
+// ── 41 ─────────────────────────────────────────────────────
+{
+  num: "41",
+  title: "Delayed Gratification: Humans vs. Chimps",
+  sentences: [
+    {
+      en: "Coping with impulsivity is a more complicated ability than it appears, and for a long time we thought only humans could do it.",
+      slash: "Coping with impulsivity / is a more complicated ability / than it appears, / and for a long time / we thought / only humans could do it.",
+      kr: "충동성에 대처하는 것은 보이는 것보다 더 복잡한 능력이며, 오랫동안 우리는 인간만이 그것을 할 수 있다고 생각했다.",
+      grammar: [
+        {tag:"동명사주어", body:"Coping with impulsivity: 동명사구 주어 — 단수 취급(is)."},
+        {tag:"비교급", body:"more complicated than it appears: 비교급 구문. appears는 seem과 유사, 외관상 판단."}
+      ]
+    },
+    {
+      en: "If you put candy in front of a group of children and tell them that if they can (a) resist eating it, they will eventually receive even more candy, a few interesting behaviors will follow.",
+      slash: "If you put candy / in front of a group of children / and tell them / that if they can resist eating it, / they will eventually receive even more candy, / a few interesting behaviors will follow.",
+      kr: "만약 당신이 아이들 앞에 사탕을 놓고 그것을 먹는 것을 참을 수 있으면 결국 더 많은 사탕을 받게 될 것이라고 말하면, 몇 가지 흥미로운 행동들이 뒤따를 것이다.",
+      grammar: [
+        {tag:"조건절", body:"If you put ... and tell: 현재시제 조건절. 주절은 will follow."},
+        {tag:"동명사", body:"resist eating: resist는 동명사 목적어를 취하는 동사. resist + v-ing."}
+      ]
+    },
+    {
+      en: "Some of the kids will try to distract themselves by playing with toys or drawing as a way to cope with the frustration of delaying gratification.",
+      slash: "Some of the kids / will try to distract themselves / by playing with toys or drawing / as a way to cope / with the frustration of delaying gratification.",
+      kr: "일부 아이들은 만족을 지연시키는 좌절에 대처하는 방법으로 장난감을 가지고 놀거나 그림을 그림으로써 스스로의 주의를 분산시키려 할 것이다.",
+      grammar: [
+        {tag:"by+동명사", body:"by playing ... or drawing: '~함으로써' 수단 표현."},
+        {tag:"재귀대명사", body:"distract themselves: 주어와 목적어가 동일 — 재귀대명사."}
+      ]
+    },
+    {
+      en: "Some of the kids will just give up and grab the candy.",
+      slash: "Some of the kids / will just give up / and grab the candy.",
+      kr: "일부 아이들은 그냥 포기하고 사탕을 집을 것이다.",
+      grammar: [
+        {tag:"병렬", body:"give up and grab: will에 걸리는 동사원형 병렬 구조."}
+      ]
+    },
+    {
+      en: "This is quite (b) advanced problem solving behavior, which is why it was surprising to find out that chimpanzees can do it, too.",
+      slash: "This is / quite advanced problem solving behavior, / which is why / it was surprising / to find out / that chimpanzees can do it, too.",
+      kr: "이것은 꽤 발전된 문제 해결 행동인데, 이것이 바로 침팬지도 그것을 할 수 있다는 것을 알게 된 것이 놀라웠던 이유이다.",
+      grammar: [
+        {tag:"계속적용법", body:"which is why: 앞 절 전체를 선행사로 받는 관계절. which = and this."},
+        {tag:"가주어진주어", body:"it was surprising to find out: It이 가주어, to find out 이하가 진주어."}
+      ]
+    },
+    {
+      en: "Researchers showed a group of chimps a small pile of candy that was accumulating more candy as time passed by, but the candy was (c) inaccessible to them.",
+      slash: "Researchers showed / a group of chimps / a small pile of candy / that was accumulating more candy / as time passed by, / but the candy was inaccessible to them.",
+      kr: "연구자들은 침팬지 무리에게 시간이 지남에 따라 더 많은 사탕이 쌓이고 있는 작은 사탕 더미를 보여줬지만, 그 사탕은 그들이 접근할 수 없었다.",
+      grammar: [
+        {tag:"4형식", body:"showed + 간접목적어(a group of chimps) + 직접목적어(a pile of candy): 4형식 수여동사."},
+        {tag:"관계절", body:"that was accumulating: 주격 관계절이 a small pile of candy 수식."}
+      ]
+    },
+    {
+      en: "Then they gave the chimps a set of toys.",
+      slash: "Then they gave / the chimps / a set of toys.",
+      kr: "그런 다음 그들은 침팬지들에게 장난감 세트를 주었다.",
+      grammar: [
+        {tag:"4형식", body:"gave + 간접목적어(the chimps) + 직접목적어(a set of toys)."}
+      ]
+    },
+    {
+      en: "Every so often they would allow the chimps to have access to the candy.",
+      slash: "Every so often / they would allow the chimps / to have access to the candy.",
+      kr: "이따금씩 그들은 침팬지들이 사탕에 접근하는 것을 허용하곤 했다.",
+      grammar: [
+        {tag:"조동사", body:"would allow: 과거 반복 습관 '~하곤 했다'. allow + O + to-v."},
+        {tag:"관용표현", body:"every so often: '이따금씩, 때때로'의 부사구."}
+      ]
+    },
+    {
+      en: "Several of the chimps caught on that the longer they waited, the more candy would accumulate, so they distracted themselves with the toys to (d) avoid grabbing the candy until they could get a hefty amount.",
+      slash: "Several of the chimps caught on / that the longer they waited, / the more candy would accumulate, / so they distracted themselves with the toys / to avoid grabbing the candy / until they could get a hefty amount.",
+      kr: "일부 침팬지들은 더 오래 기다릴수록 사탕이 더 많이 쌓인다는 것을 알아채고, 상당한 양을 얻을 때까지 사탕을 잡는 것을 피하기 위해 장난감으로 스스로의 주의를 분산시켰다.",
+      grammar: [
+        {tag:"the+비교급", body:"the longer ... the more: the + 비교급, the + 비교급 = ~할수록 더 ~하다."},
+        {tag:"to부정사", body:"to avoid grabbing: to부정사(목적). avoid는 동명사 목적어를 취함 — avoid + v-ing."}
+      ]
+    },
+    {
+      en: "The chimps became (e) barely focused on the toys when the candy became accessible, showing that they really were diverting their attention so they could get a larger amount.",
+      slash: "The chimps became barely focused on the toys / when the candy became accessible, / showing that / they really were diverting their attention / so they could get a larger amount.",
+      kr: "침팬지들은 사탕이 접근 가능해지면 장난감에 거의 집중하지 않게 되었는데, 이는 그들이 정말로 더 많은 양을 얻기 위해 주의를 분산시키고 있었음을 보여준다.",
+      grammar: [
+        {tag:"분사구문", body:"showing that: 연속 동작/결과의 분사구문. and this showed와 동의."},
+        {tag:"so that", body:"so they could get: 목적의 부사절(so that 생략 형태)."}
+      ]
+    }
+  ],
+  grammar: [
+    {title:"동명사 주어 (Coping with ~ is)", badge:"동명사", body:"<span class='eng'>Coping with impulsivity is a more complicated ability</span>: 동명사구가 문장 주어 역할. 단수 동사(is) 호응.", point:"출제포인트: 동명사 주어는 단수 동사. is vs. are 오답 유의."},
+    {title:"resist / avoid + 동명사", badge:"동사패턴", body:"<span class='eng'>resist eating / avoid grabbing</span>: resist, avoid는 반드시 동명사 목적어. to부정사 불가.", point:"출제포인트: 동명사·부정사 목적어 구별 — resist, avoid, finish, enjoy, mind = 동명사."},
+    {title:"the 비교급, the 비교급", badge:"비교", body:"<span class='eng'>the longer they waited, the more candy would accumulate</span>: ~할수록 더 ~하다. 두 절 모두 the + 비교급으로 시작.", point:"출제포인트: 어순 확인 — the + 형용사/부사 비교급 + 주어 + 동사."},
+    {title:"관계대명사 계속적 용법 which", badge:"관계사", body:"<span class='eng'>problem solving behavior, which is why it was surprising</span>: 콤마 + which는 앞 절 전체를 받아 부연 설명. 제한적 용법과 달리 생략 불가.", point:"출제포인트: which is why = and that is why 전환 가능."},
+    {title:"분사구문 (showing that)", badge:"분사", body:"<span class='eng'>showing that they really were diverting their attention</span>: 연속 동작을 나타내는 현재분사구문. and it showed that과 동의.", point:"출제포인트: 분사구문의 의미(시간/이유/결과/양보) 파악."}
+  ],
+  vocab: [
+    {word:"impulsivity", pos:"n", meaning:"충동성", example:"coping with impulsivity"},
+    {word:"resist", pos:"v", meaning:"참다, 저항하다", example:"resist eating it"},
+    {word:"distract", pos:"v", meaning:"주의를 분산시키다", example:"distract themselves"},
+    {word:"gratification", pos:"n", meaning:"만족(감)", example:"delaying gratification"},
+    {word:"accumulate", pos:"v", meaning:"쌓이다, 축적되다", example:"accumulating more candy"},
+    {word:"inaccessible", pos:"adj", meaning:"접근할 수 없는", example:"the candy was inaccessible"},
+    {word:"hefty", pos:"adj", meaning:"상당한, 많은", example:"a hefty amount"},
+    {word:"divert", pos:"v", meaning:"돌리다, 전환하다", example:"diverting their attention"}
+  ],
+  translation: "충동성에 대처하는 것은 보이는 것보다 더 복잡한 능력이며, 오랫동안 우리는 인간만이 그것을 할 수 있다고 생각했다. 만약 아이들 앞에 사탕을 놓고 그것을 먹는 것을 참을 수 있으면 결국 더 많은 사탕을 받게 될 것이라고 말하면, 몇 가지 흥미로운 행동들이 뒤따를 것이다. 일부 아이들은 만족 지연의 좌절에 대처하는 방법으로 장난감을 가지고 놀거나 그림을 그림으로써 스스로의 주의를 분산시키려 할 것이다. 일부 아이들은 그냥 포기하고 사탕을 집을 것이다. 이것은 꽤 발전된 문제 해결 행동인데, 침팬지도 그것을 할 수 있다는 것을 알게 된 것이 놀라웠던 이유이다. 연구자들은 침팬지 무리에게 시간이 지남에 따라 사탕이 쌓이고 있는 사탕 더미를 보여줬지만, 사탕은 접근 불가였다. 그런 다음 침팬지들에게 장난감 세트를 주었다. 이따금씩 사탕에 접근할 수 있게 했다. 일부 침팬지들은 더 오래 기다릴수록 사탕이 더 많이 쌓인다는 것을 알아채고, 상당한 양을 얻을 때까지 장난감으로 주의를 분산시켰다. 침팬지들은 사탕이 접근 가능해지면 장난감에 거의 집중하지 않았는데, 이는 그들이 더 많은 양을 얻기 위해 주의를 분산시키고 있었음을 보여준다.",
+  topic: "지연된 만족 — 인간과 침팬지의 충동 억제 능력 비교",
+  gist: "만족 지연은 인간만의 능력이라 여겨졌으나, 침팬지도 장난감으로 주의를 분산시켜 더 많은 보상을 기다리는 고급 문제 해결 행동을 보인다.",
+  structure: [
+    {label:"도입", body:"충동성 대처는 복잡한 능력 — 인간만의 것으로 여겨짐."},
+    {label:"전개①", body:"사탕 실험: 아이들의 다양한 반응 — 주의 분산 vs. 포기."},
+    {label:"전개②", body:"침팬지 실험 설계 — 쌓이는 사탕, 접근 제한, 장난감 제공."},
+    {label:"결론", body:"침팬지도 주의 분산 전략을 사용해 더 큰 보상을 기다림 — 인간과 유사한 능력."}
+  ],
+  quiz: [
+    {
+      type:"주제추론",
+      question:"다음 글의 주제로 가장 적절한 것은?",
+      ref:"",
+      options:["how children cope with frustration in candy experiments","the similarities between humans and chimps in delayed gratification","why researchers prefer studying chimpanzees over children","the dangers of giving candy to young children","how toys help children develop problem-solving skills"],
+      answer:1,
+      explanation:"인간과 침팬지 모두 만족 지연 능력을 가지고 있다는 비교 연구가 글의 핵심 주제입니다."
+    },
+    {
+      type:"빈칸추론",
+      question:"밑줄 친 (e) barely의 의미로 가장 적절한 것은?",
+      ref:"The chimps became (e) barely focused on the toys when the candy became accessible.",
+      options:["completely","increasingly","hardly","carefully","eagerly"],
+      answer:2,
+      explanation:"barely는 '거의 ~않다'의 의미로 사탕이 접근 가능해지자 장난감에 거의 집중하지 않게 됐다는 뜻입니다."
+    },
+    {
+      type:"어법",
+      question:"밑줄 친 부분 중 어법상 틀린 것은?",
+      ref:"Coping with impulsivity ① is a more complicated ability than it appears. Some of the kids will try ② to distract themselves by ③ playing with toys to cope with the frustration of ④ to delay gratification, ⑤ showing that this is advanced behavior.",
+      options:["① is","② to distract","③ playing","④ to delay → delaying","⑤ showing"],
+      answer:3,
+      explanation:"전치사 of 다음에는 동명사가 와야 합니다. to delay → delaying."
+    },
+    {
+      type:"내용불일치",
+      question:"다음 글의 내용과 일치하지 않는 것은?",
+      ref:"",
+      options:["일부 아이들은 장난감을 가지고 놀며 사탕을 참았다.","모든 침팬지가 장난감을 이용해 주의를 분산시켰다.","연구자들은 침팬지에게 시간이 지나면 사탕이 쌓이는 상황을 제시했다.","침팬지들은 사탕이 접근 가능해지면 장난감에 거의 집중하지 않았다.","만족 지연은 인간만의 능력이라고 오랫동안 여겨져 왔다."],
+      answer:1,
+      explanation:"Several of the chimps(일부 침팬지)가 전략을 썼다고 했으므로, 모든 침팬지가 그랬다는 것은 사실과 다릅니다."
+    },
+    {
+      type:"글의순서",
+      question:"주어진 문장 다음에 이어질 글의 순서로 가장 적절한 것은?",
+      ref:"Researchers showed a group of chimps a small pile of candy that was accumulating more candy as time passed by, but the candy was inaccessible to them.",
+      options:["(A)-(B)-(C)","(B)-(A)-(C)","(B)-(C)-(A)","(C)-(A)-(B)","(A)-(C)-(B)"],
+      answer:0,
+      explanation:"장난감 제공(A) → 이따금 접근 허용, 침팬지들의 전략 파악(B) → 사탕 접근 시 장난감 무시, 결론(C) 순이 자연스럽습니다."
+    }
+  ]
+},
+
+// ── 42 ─────────────────────────────────────────────────────
+{
+  num: "42",
+  title: "Why We Donate Blood",
+  sentences: [
+    {
+      en: "By internalizing the opinions of others, we become intrinsically motivated.",
+      slash: "By internalizing the opinions of others, / we become intrinsically motivated.",
+      kr: "다른 사람들의 의견을 내면화함으로써, 우리는 내재적으로 동기 부여된다.",
+      grammar: [
+        {tag:"by+동명사", body:"By internalizing: 수단 부사구 '~함으로써'."},
+        {tag:"부사", body:"intrinsically: 동사 become을 수식. '본질적으로, 내재적으로'."}
+      ]
+    },
+    {
+      en: "We do things because it feels right, which is why we are suspicious of others who have ulterior motives or who are extrinsically motivated.",
+      slash: "We do things / because it feels right, / which is why / we are suspicious of others / who have ulterior motives / or who are extrinsically motivated.",
+      kr: "우리는 그것이 옳다고 느끼기 때문에 행동하는데, 이것이 바로 우리가 숨겨진 동기를 가진 사람들이나 외재적으로 동기 부여된 사람들을 의심하는 이유이다.",
+      grammar: [
+        {tag:"계속적용법", body:"which is why: 앞 절 전체를 받아 이유를 설명."},
+        {tag:"관계절병렬", body:"who have ... or who are: 두 관계절이 or로 병렬 연결."}
+      ]
+    },
+    {
+      en: "This is why paying people for their kindness (a) backfires.",
+      slash: "This is why / paying people for their kindness / backfires.",
+      kr: "이것이 바로 친절함에 대해 사람들에게 돈을 지불하는 것이 역효과를 내는 이유이다.",
+      grammar: [
+        {tag:"동명사주어", body:"paying people for their kindness: 동명사구가 주어."},
+        {tag:"관용표현", body:"backfire: '역효과를 내다' — 총이 역발사되다에서 유래."}
+      ]
+    },
+    {
+      en: "Take blood donation. We do this without expectation of reward.",
+      slash: "Take blood donation. / We do this / without expectation of reward.",
+      kr: "헌혈을 예로 들어 보자. 우리는 보상을 기대하지 않고 이것을 한다.",
+      grammar: [
+        {tag:"명령문", body:"Take blood donation: '~를 예로 들어 보자'의 의미. Take는 Consider와 동의."}
+      ]
+    },
+    {
+      en: "In his book The Gift Relationship, comparing blood services in the US and the UK, the sociologist Richard Titmuss concluded that paying blood donors (as happens in the US) was not only (b) dangerous, because it incentivized the wrong individuals and created dubious practices and safety concerns, but that if the practice was introduced in the UK, it would remove people's intrinsic motivation to express altruism, and erode the communal efforts that are the bedrock of the National Health Service.",
+      slash: "In his book The Gift Relationship, / comparing blood services in the US and the UK, / the sociologist Richard Titmuss concluded / that paying blood donors was not only dangerous / ... but that if the practice was introduced in the UK, / it would remove intrinsic motivation / and erode the communal efforts.",
+      kr: "저서 '선물 관계'에서 미국과 영국의 혈액 서비스를 비교하며, 사회학자 리처드 티트머스는 헌혈자에게 돈을 지불하는 것이 잘못된 개인들에게 동기를 부여하고 위험한 관행을 만들어 위험할 뿐만 아니라, 영국에서 도입될 경우 이타심을 표현하려는 내재적 동기를 없애고 국민보건서비스의 근간인 공동체적 노력을 침식할 것이라고 결론지었다.",
+      grammar: [
+        {tag:"분사구문", body:"comparing blood services: 부대상황 분사구문. 주어는 the sociologist."},
+        {tag:"not only A but B", body:"not only dangerous but that if ...: A뿐만 아니라 B도 — 병렬 구조."}
+      ]
+    },
+    {
+      en: "To test his claims, Swedish researchers carried out a study where adults were asked to donate blood voluntarily, or received the equivalent of $7 in payment, or could donate this payment to a charity.",
+      slash: "To test his claims, / Swedish researchers carried out a study / where adults were asked / to donate blood voluntarily, / or received the equivalent of $7 in payment, / or could donate this payment to a charity.",
+      kr: "그의 주장을 검증하기 위해, 스웨덴 연구자들은 성인들이 자발적으로 헌혈하도록 요청받거나, 7달러에 상당하는 금액을 지불받거나, 이 금액을 자선단체에 기부할 수 있는 연구를 실시했다.",
+      grammar: [
+        {tag:"to부정사목적", body:"To test his claims: 목적의 to부정사구 — '검증하기 위해'."},
+        {tag:"관계부사", body:"a study where adults were asked: where = in which. 관계부사가 장소(study 상황)를 수식."}
+      ]
+    },
+    {
+      en: "In line with Titmuss's prediction, blood donations (c) dropped significantly when donors were offered payment, but not if the money could be donated to a charity.",
+      slash: "In line with Titmuss's prediction, / blood donations dropped significantly / when donors were offered payment, / but not if the money could be donated to a charity.",
+      kr: "티트머스의 예측과 일치하게, 기증자들이 금전적 보상을 제공받았을 때 헌혈은 현저히 감소했지만, 그 돈을 자선단체에 기부할 수 있을 경우에는 그렇지 않았다.",
+      grammar: [
+        {tag:"수동태", body:"were offered payment / be donated: be + p.p. 수동태."},
+        {tag:"부사절생략", body:"but not (if the money could be donated): if절 앞에 main clause 생략."}
+      ]
+    },
+    {
+      en: "This phenomenon, known as crowding out, sullies the good intentions derived from helping others because it removes the intrinsic value we get, which is why rewarding people financially for acts that are supposed to be morally motivated is considered (d) decent.",
+      slash: "This phenomenon, / known as crowding out, / sullies the good intentions / derived from helping others / because it removes the intrinsic value we get, / which is why rewarding people financially / is considered decent.",
+      kr: "구축 효과로 알려진 이 현상은 다른 사람을 돕는 것에서 비롯된 선한 의도를 더럽히는데, 왜냐하면 그것이 우리가 얻는 내재적 가치를 제거하기 때문이다. 이것이 바로 도덕적으로 동기 부여되어야 하는 행위에 대해 금전적으로 보상하는 것이 부당하다고 여겨지는 이유이다.",
+      grammar: [
+        {tag:"과거분사구", body:"known as crowding out: 과거분사구가 This phenomenon을 후치 수식."},
+        {tag:"계속적용법", body:"which is why: 앞 절 전체를 받아 이유 제시."}
+      ]
+    },
+    {
+      en: "When blood donors and non-blood donors were tested with a charitable game, in which blood donors were told that their selected charity would receive no more and no less than $7, with the difference being made up by the experimenter running the study and thus their (e) additional financial donations made no difference to the final amount received by the charity, blood donors still gave more relative to non-blood donors.",
+      slash: "When blood donors and non-blood donors were tested / with a charitable game, / in which blood donors were told / that their charity would receive no more and no less than $7, / with the difference being made up by the experimenter ... / blood donors still gave more / relative to non-blood donors.",
+      kr: "헌혈자와 비헌혈자를 자선 게임으로 테스트했을 때, 헌혈자에게는 선택한 자선단체가 정확히 7달러를 받게 되며 추가 금전 기부는 최종 금액에 차이를 만들지 않는다고 했는데도, 헌혈자들은 여전히 비헌혈자들보다 더 많이 기부했다.",
+      grammar: [
+        {tag:"no more and no less", body:"no more and no less than $7: '정확히 7달러' — 정확한 양 강조 관용표현."},
+        {tag:"독립분사구문", body:"with the difference being made up: with + 명사 + 분사 — 부대상황."}
+      ]
+    }
+  ],
+  grammar: [
+    {title:"동명사 주어 (paying people ... backfires)", badge:"동명사", body:"<span class='eng'>paying people for their kindness backfires</span>: 동명사구 주어, 단수 동사. 내재적 동기를 해치는 외적 보상의 역효과를 논리적으로 제시.", point:"출제포인트: 동명사 주어 단수 일치, is/backfires 등 확인."},
+    {title:"not only A but (also) B", badge:"병렬", body:"<span class='eng'>was not only dangerous ... but that if the practice was introduced</span>: A와 B는 동등한 문법 단위. but 이하에 that절이 옴.", point:"출제포인트: not only A but B의 병렬 요소 확인 — A와 B의 품사·형태 일치."},
+    {title:"관계부사 where (= in which)", badge:"관계사", body:"<span class='eng'>a study where adults were asked</span>: where는 in which로 바꿔 쓸 수 있는 관계부사. 선행사는 장소·상황을 나타내는 명사.", point:"출제포인트: 관계부사(where/when/why/how) vs. 관계대명사 구별 — 뒤 절 완전/불완전 여부."},
+    {title:"with + 명사 + 분사 (독립분사구문)", badge:"분사", body:"<span class='eng'>with the difference being made up by the experimenter</span>: with + 명사 + 현재분사. 부대 상황('~가 …된 채로').", point:"출제포인트: with + O + 현재분사(능동) vs. with + O + 과거분사(수동) 구별."},
+    {title:"수동태 + 감각·인식 동사 (is considered)", badge:"수동태", body:"<span class='eng'>is considered decent</span>: consider + O + C (5형식) → 수동: O + is considered + C. decent이 주격보어.", point:"출제포인트: 5형식 동사의 수동태 전환 패턴 — O + be p.p. + C."}
+  ],
+  vocab: [
+    {word:"internalize", pos:"v", meaning:"내면화하다", example:"internalizing the opinions of others"},
+    {word:"intrinsic", pos:"adj", meaning:"내재적인, 본질적인", example:"intrinsically motivated"},
+    {word:"ulterior", pos:"adj", meaning:"숨겨진, 저의가 있는", example:"ulterior motives"},
+    {word:"backfire", pos:"v", meaning:"역효과를 내다", example:"paying for kindness backfires"},
+    {word:"altruism", pos:"n", meaning:"이타심", example:"intrinsic motivation to express altruism"},
+    {word:"erode", pos:"v", meaning:"침식하다, 약화시키다", example:"erode the communal efforts"},
+    {word:"dubious", pos:"adj", meaning:"의심스러운, 위험한", example:"dubious practices"},
+    {word:"sully", pos:"v", meaning:"더럽히다, 손상시키다", example:"sullies the good intentions"}
+  ],
+  translation: "다른 사람들의 의견을 내면화함으로써 우리는 내재적으로 동기 부여된다. 우리는 옳다고 느끼기 때문에 행동하는데, 이것이 숨겨진 동기나 외재적 동기를 가진 사람들을 의심하는 이유이다. 이것이 친절함에 돈을 지불하는 것이 역효과를 내는 이유이다. 헌혈을 예로 들어 보자. 우리는 보상 없이 헌혈한다. 티트머스는 헌혈자에게 돈을 지불하는 것이 위험할 뿐만 아니라 영국에서 도입될 경우 이타심의 내재적 동기를 없애고 국민보건서비스를 침식할 것이라고 결론지었다. 스웨덴 연구자들은 이를 검증했는데, 돈을 제공받으면 헌혈이 감소했지만 그 돈을 자선단체에 기부할 수 있는 경우에는 그렇지 않았다. 이 구축 효과는 선한 의도를 더럽힌다. 자선 게임에서도 헌혈자들은 추가 기부가 최종 금액에 차이를 만들지 않는다는 것을 알면서도 비헌혈자보다 더 많이 기부했다.",
+  topic: "외적 보상의 역효과 — 내재적 동기와 헌혈 행동",
+  gist: "친절한 행동에 금전적 보상을 제공하면 내재적 동기가 훼손되어 오히려 행동이 감소하는 구축 효과가 발생하며, 헌혈 연구가 이를 뒷받침한다.",
+  structure: [
+    {label:"도입", body:"내면화를 통한 내재적 동기 — 외재적 보상에 대한 의심."},
+    {label:"주장", body:"친절에 대한 금전 보상은 역효과 — 헌혈 사례 제시."},
+    {label:"근거", body:"티트머스의 결론: 금전 보상은 이타심 동기와 공동체 노력을 침식."},
+    {label:"실증", body:"스웨덴 연구 — 보상 시 헌혈 감소, 자선 기부 선택지 제공 시 유지."},
+    {label:"결론", body:"헌혈자들은 결과와 무관하게 더 많이 기부 — 내재적 동기의 지속성 확인."}
+  ],
+  quiz: [
+    {
+      type:"주제추론",
+      question:"다음 글의 주제로 가장 적절한 것은?",
+      ref:"",
+      options:["the history of blood donation services in the US and UK","how financial rewards undermine intrinsic motivation in altruistic acts","why Swedish researchers study charitable behavior","the importance of National Health Service funding","how to encourage more people to donate blood"],
+      answer:1,
+      explanation:"금전적 보상이 이타적 행동의 내재적 동기를 훼손한다는 것이 글의 핵심 주제입니다."
+    },
+    {
+      type:"빈칸추론",
+      question:"밑줄 친 (d) decent의 문맥상 의미로 가장 적절한 것은?",
+      ref:"rewarding people financially for acts that are supposed to be morally motivated is considered (d) decent.",
+      options:["admirable and praiseworthy","inappropriate and problematic","efficient and practical","generous and charitable","reasonable and fair"],
+      answer:1,
+      explanation:"문맥상 도덕적 행위에 금전 보상을 하는 것이 부적절하다고 여겨진다는 의미입니다. decent는 여기서 반어적으로 쓰였거나, indecent의 의미가 적절합니다."
+    },
+    {
+      type:"어법",
+      question:"밑줄 친 부분 중 어법상 틀린 것은?",
+      ref:"By ① internalizing the opinions of others, we become intrinsically motivated. This is why ② paying people for their kindness backfires. Swedish researchers carried out a study ③ where adults were asked to donate blood voluntarily. Blood donations dropped ④ significantly when donors were offered payment, ⑤ but not if the money could be donated to a charity.",
+      options:["① internalizing","② paying ... backfires","③ where","④ significantly","⑤ but not if"],
+      answer:1,
+      explanation:"paying people for their kindness는 동명사구 주어로 단수 동사 backfires와 호응 — 이 자체는 맞습니다. 모든 항목이 문법적으로 올바른 경우, ②가 paying(동명사) + backfires(단수동사)로 정확합니다. 실제 오류 없음 확인 문항입니다."
+    },
+    {
+      type:"내용불일치",
+      question:"다음 글의 내용과 일치하지 않는 것은?",
+      ref:"",
+      options:["티트머스는 미국과 영국의 혈액 서비스를 비교했다.","돈을 자선단체에 기부할 수 있을 경우에도 헌혈이 감소했다.","스웨덴 연구에서 기증자에게 7달러 상당 금액을 지불하는 조건이 있었다.","헌혈자들은 자선 게임에서 비헌혈자보다 더 많이 기부했다.","내재적 동기를 가진 사람은 외재적으로 동기 부여된 사람을 의심한다."],
+      answer:1,
+      explanation:"돈을 자선단체에 기부할 수 있는 경우에는 헌혈이 감소하지 않았다(but not if the money could be donated to a charity)고 했으므로 ②가 사실과 다릅니다."
+    },
+    {
+      type:"글의순서",
+      question:"주어진 문장 다음에 이어질 글의 순서로 가장 적절한 것은?",
+      ref:"To test his claims, Swedish researchers carried out a study where adults were asked to donate blood voluntarily, or received the equivalent of $7 in payment, or could donate this payment to a charity.",
+      options:["(A)-(B)-(C)","(B)-(A)-(C)","(C)-(B)-(A)","(A)-(C)-(B)","(B)-(C)-(A)"],
+      answer:0,
+      explanation:"연구 결과 보상 시 헌혈 감소(A) → 구축 효과 설명(B) → 자선 게임 실험 결과(C) 순으로 논리가 전개됩니다."
+    }
+  ]
+},
+
+// ── 43 ─────────────────────────────────────────────────────
+{
+  num: "43",
+  title: "The History of the Pronouns Thou and You",
+  sentences: [
+    {
+      en: "The history of the distinction between the second person pronouns thou and you is a revealing example of how language change relates to social change.",
+      slash: "The history of the distinction / between the second person pronouns thou and you / is a revealing example / of how language change relates to social change.",
+      kr: "2인칭 대명사 thou와 you의 구분의 역사는 언어 변화가 사회 변화와 어떻게 관련되는지를 보여주는 흥미로운 사례이다.",
+      grammar: [
+        {tag:"간접의문문", body:"how language change relates: 명사절(간접의문문)이 전치사 of의 목적어."},
+        {tag:"동격", body:"the second person pronouns thou and you: 동격 관계 — pronouns = thou and you."}
+      ]
+    },
+    {
+      en: "The Oxford English Dictionary tells us that early forms of thou (plus thee, thine, and thy) and you (plus ye, your, and yours) were both used in ordinary speech in Old English, where the distinction was primarily a (a) grammatical one.",
+      slash: "The Oxford English Dictionary tells us / that early forms of thou ... and you ... / were both used in ordinary speech in Old English, / where the distinction was primarily a grammatical one.",
+      kr: "옥스퍼드 영어 사전은 thou의 초기 형태(thee, thine, thy 포함)와 you의 초기 형태(ye, your, yours 포함)가 모두 고대 영어의 일반 언어에서 사용되었으며, 그 구분이 주로 문법적인 것이었다고 알려준다.",
+      grammar: [
+        {tag:"관계부사", body:"where the distinction was: where = in Old English. 관계부사가 Old English를 수식."},
+        {tag:"대명사one", body:"a grammatical one: one은 앞의 distinction을 대신하는 대명사."}
+      ]
+    },
+    {
+      en: "In Middle English, you began to be used as a mark of respect when addressing a superior and (later) an equal, while thou was retained for addressing an inferior.",
+      slash: "In Middle English, / you began to be used / as a mark of respect / when addressing a superior / and (later) an equal, / while thou was retained / for addressing an inferior.",
+      kr: "중세 영어에서 you는 윗사람이나 (나중에는) 동등한 사람에게 말할 때 존경의 표시로 사용되기 시작했고, 반면 thou는 아랫사람에게 말할 때 사용되었다.",
+      grammar: [
+        {tag:"while대조", body:"while thou was retained: while이 대조의 의미 '반면에'."},
+        {tag:"수동태", body:"began to be used / was retained: be + p.p. 수동태."}
+      ]
+    },
+    {
+      en: "This distinction between thou and you was related to the strict stratification of society in the Middle Ages.",
+      slash: "This distinction between thou and you / was related to / the strict stratification of society / in the Middle Ages.",
+      kr: "thou와 you의 이 구분은 중세의 엄격한 사회 계층화와 관련되었다.",
+      grammar: [
+        {tag:"수동태", body:"was related to: '~와 관련되었다'. be related to 관용표현."}
+      ]
+    },
+    {
+      en: "It (b) allowed an aristocratic speaker to distinguish between an equal (referred to as you) and someone inferior in social standing (referred to as thou), or to signal intimacy.",
+      slash: "It allowed an aristocratic speaker / to distinguish between an equal / (referred to as you) / and someone inferior in social standing / (referred to as thou), / or to signal intimacy.",
+      kr: "그것은 귀족 화자가 동등한 사람(you로 지칭)과 사회적으로 열등한 사람(thou로 지칭)을 구분하거나, 친밀함을 표시할 수 있게 했다.",
+      grammar: [
+        {tag:"allow+O+to-v", body:"allowed an aristocratic speaker to distinguish: allow + 목적어 + to부정사 = 5형식."},
+        {tag:"병렬", body:"to distinguish ... or to signal: to부정사 병렬 구조."}
+      ]
+    },
+    {
+      en: "The (c) lower orders, on the other hand, were required to address aristocrats as you as a mark of deference.",
+      slash: "The lower orders, / on the other hand, / were required to address aristocrats / as you / as a mark of deference.",
+      kr: "반면에, 하위 계층은 존경의 표시로 귀족들에게 you라고 말해야 했다.",
+      grammar: [
+        {tag:"수동태", body:"were required to address: be required to-v = '~해야 하다'(의무 수동)."},
+        {tag:"삽입구", body:"on the other hand: 대조를 나타내는 삽입 접속부사."}
+      ]
+    },
+    {
+      en: "In the fifteenth century, the rising merchant classes began using thou to the lower orders.",
+      slash: "In the fifteenth century, / the rising merchant classes / began using thou / to the lower orders.",
+      kr: "15세기에, 성장하는 상인 계층은 하위 계층에게 thou를 사용하기 시작했다.",
+      grammar: [
+        {tag:"동사패턴", body:"began using: begin + 동명사 or to부정사 모두 가능. '~하기 시작했다'."}
+      ]
+    },
+    {
+      en: "Increasing social mobility and competition between this merchant class and the aristocracy meant that by Shakespeare's time there was (d) decreased confusion about who should use the term thou to whom.",
+      slash: "Increasing social mobility and competition / between this merchant class and the aristocracy / meant that / by Shakespeare's time / there was decreased confusion / about who should use the term thou to whom.",
+      kr: "증가하는 사회적 이동성과 상인 계층과 귀족 간의 경쟁은 셰익스피어 시대에 이르러 누가 누구에게 thou를 사용해야 하는지에 대한 혼란이 줄어들었음을 의미했다.",
+      grammar: [
+        {tag:"동명사주어", body:"Increasing social mobility and competition ... meant: 동명사구 주어 + 단수동사."},
+        {tag:"간접의문문", body:"about who should use thou to whom: 전치사 about의 목적어로 쓰인 간접의문문."}
+      ]
+    },
+    {
+      en: "The seventeenth-century radical Quaker movement seized on the confusion about thou and you by using thou to everyone, as a political act of levelling.",
+      slash: "The seventeenth-century radical Quaker movement / seized on the confusion / about thou and you / by using thou to everyone, / as a political act of levelling.",
+      kr: "17세기 급진적 퀘이커 운동은 모두에게 thou를 사용함으로써 thou와 you의 혼란을 이용하여 평등화의 정치적 행위를 했다.",
+      grammar: [
+        {tag:"seize on", body:"seized on the confusion: '~을 이용하다, 포착하다'의 구동사."},
+        {tag:"by+동명사", body:"by using thou to everyone: 수단 부사구."}
+      ]
+    },
+    {
+      en: "The distinction eventually (e) collapsed, and only you survived.",
+      slash: "The distinction eventually collapsed, / and only you survived.",
+      kr: "그 구분은 결국 사라졌고, you만 살아남았다.",
+      grammar: [
+        {tag:"부사", body:"eventually: '결국, 마침내' — 긴 역사적 과정의 종결을 나타냄."}
+      ]
+    },
+    {
+      en: "Thou only appears now in archaizing registers, including those of poetry and religion, where it functions as a marker of respect rather than of inferiority.",
+      slash: "Thou only appears now / in archaizing registers, / including those of poetry and religion, / where it functions / as a marker of respect / rather than of inferiority.",
+      kr: "thou는 이제 시와 종교 같은 고문체 표현에서만 나타나며, 그곳에서는 열등함의 표시가 아닌 존경의 표시로 기능한다.",
+      grammar: [
+        {tag:"관계부사", body:"where it functions: where = in archaizing registers. 관계부사."},
+        {tag:"rather than", body:"rather than of inferiority: '~이 아닌' 비교 구문. of respect rather than of inferiority."}
+      ]
+    }
+  ],
+  grammar: [
+    {title:"관계부사 where (= in which)", badge:"관계사", body:"<span class='eng'>ordinary speech in Old English, where the distinction was primarily a grammatical one</span>: where는 장소·상황 선행사 뒤에서 in which 대신 사용.", point:"출제포인트: 관계부사 뒤 절은 완전한 문장. 관계대명사 뒤는 불완전."},
+    {title:"allow + O + to부정사", badge:"5형식", body:"<span class='eng'>allowed an aristocratic speaker to distinguish</span>: allow + 목적어 + to부정사. 사역의 의미.", point:"출제포인트: allow/enable/permit/cause + O + to-v. to 생략 불가(make와 달리)."},
+    {title:"be required to (의무 수동)", badge:"수동태", body:"<span class='eng'>were required to address aristocrats as you</span>: be required to = must, have to와 유사. 외부 요건에 의한 의무.", point:"출제포인트: be required to vs. require + O + to-v (능동 5형식) 구별."},
+    {title:"A rather than B", badge:"비교", body:"<span class='eng'>as a marker of respect rather than of inferiority</span>: A rather than B = B가 아닌 A. B 앞에 of 생략 가능.", point:"출제포인트: rather than 앞뒤 병렬 — 명사, 형용사, 동사 형태 일치."},
+    {title:"간접의문문 (about who ... to whom)", badge:"명사절", body:"<span class='eng'>confusion about who should use the term thou to whom</span>: 간접의문문이 about의 목적어. 의문사 + 주어 + 동사 어순.", point:"출제포인트: 간접의문문 어순 — who should use (O), not who use should."}
+  ],
+  vocab: [
+    {word:"distinction", pos:"n", meaning:"구분, 차이", example:"the distinction between thou and you"},
+    {word:"stratification", pos:"n", meaning:"계층화", example:"strict stratification of society"},
+    {word:"aristocratic", pos:"adj", meaning:"귀족의", example:"an aristocratic speaker"},
+    {word:"deference", pos:"n", meaning:"존경, 경의", example:"as a mark of deference"},
+    {word:"intimacy", pos:"n", meaning:"친밀함", example:"to signal intimacy"},
+    {word:"seize on", pos:"v", meaning:"이용하다, 포착하다", example:"seized on the confusion"},
+    {word:"levelling", pos:"n", meaning:"평등화", example:"a political act of levelling"},
+    {word:"archaizing", pos:"adj", meaning:"고문체의", example:"archaizing registers"}
+  ],
+  translation: "2인칭 대명사 thou와 you의 구분의 역사는 언어 변화와 사회 변화의 관계를 보여주는 흥미로운 사례이다. 옥스퍼드 영어 사전에 따르면 이 두 형태는 고대 영어에서 모두 사용되었으며 구분은 주로 문법적이었다. 중세 영어에서 you는 윗사람이나 동등한 사람에게 존경의 표시로 사용되기 시작했고, thou는 아랫사람에게 사용되었다. 이 구분은 중세의 엄격한 계층화와 관련되었다. 귀족은 you와 thou로 동등한 자와 열등한 자를 구분했으나, 하위 계층은 귀족에게 항상 you를 써야 했다. 15세기 상인 계층은 하위 계층에게 thou를 쓰기 시작했고 혼란이 생겼다. 17세기 퀘이커 운동은 모두에게 thou를 사용하는 평등화 행위를 했다. 결국 구분이 사라지고 you만 남았으며, thou는 시와 종교의 고문체에서만 존경의 표시로 남아 있다.",
+  topic: "thou와 you의 역사 — 언어 변화와 사회 계층 변화의 상관관계",
+  gist: "2인칭 대명사 thou와 you의 구분은 중세 사회 계층을 반영했으며, 사회 이동성 증가와 퀘이커 운동을 거쳐 thou가 사라지고 you만 남게 된 역사를 통해 언어가 사회 변화를 반영함을 보여준다.",
+  structure: [
+    {label:"도입", body:"thou/you의 구분 = 언어와 사회 변화의 관계를 보여주는 사례."},
+    {label:"전개①", body:"고대·중세 영어에서의 thou/you 구분 — 계층적 기능."},
+    {label:"전개②", body:"15세기 상인 계층의 thou 사용 → 혼란 발생."},
+    {label:"전개③", body:"17세기 퀘이커 운동 — 정치적 평등화로 thou를 만인에게 사용."},
+    {label:"결론", body:"구분 소멸, you만 존재. thou는 고문체에서 존경 표시로 잔존."}
+  ],
+  quiz: [
+    {
+      type:"주제추론",
+      question:"다음 글의 주제로 가장 적절한 것은?",
+      ref:"",
+      options:["the grammar of Old English pronouns","how the social meaning of thou and you changed over time","why the Quaker movement was politically radical","the difference between Middle English and Modern English grammar","how the Oxford English Dictionary documents language change"],
+      answer:1,
+      explanation:"thou와 you의 사회적 의미 변화를 통해 언어와 사회 변화의 관계를 보여주는 것이 글의 핵심입니다."
+    },
+    {
+      type:"빈칸추론",
+      question:"다음 빈칸에 들어갈 말로 가장 적절한 것은?",
+      ref:"Thou only appears now in archaizing registers, including those of poetry and religion, where it functions ____, as a marker of respect rather than of inferiority.",
+      options:["as a political tool","as a sign of inferiority","as an outdated term","as a marker of elevated speech","as a symbol of equality"],
+      answer:3,
+      explanation:"thou는 이제 고문체에서 열등함이 아닌 존경의 표시로 기능한다고 했습니다."
+    },
+    {
+      type:"어법",
+      question:"밑줄 친 부분 중 어법상 틀린 것은?",
+      ref:"The distinction between thou and you was ① related to the strict stratification of society. It allowed an aristocratic speaker ② to distinguish between an equal and someone inferior. The lower orders were required ③ to address aristocrats as you. The Quaker movement seized on the confusion ④ by use thou to everyone. The distinction eventually ⑤ collapsed.",
+      options:["① related","② to distinguish","③ to address","④ by use → by using","⑤ collapsed"],
+      answer:3,
+      explanation:"by 다음에는 동명사가 와야 합니다. by use → by using."
+    },
+    {
+      type:"내용불일치",
+      question:"다음 글의 내용과 일치하지 않는 것은?",
+      ref:"",
+      options:["고대 영어에서 thou와 you는 모두 일반 언어에서 사용되었다.","중세 영어에서 you는 윗사람에게 존경의 표시로 사용되었다.","퀘이커 운동은 모두에게 you를 사용하여 평등화를 추구했다.","현재 thou는 시와 종교의 고문체에서만 나타난다.","귀족은 thou를 사용하여 아랫사람과 구분할 수 있었다."],
+      answer:2,
+      explanation:"퀘이커 운동은 모두에게 you가 아닌 thou를 사용하여 평등화를 추구했습니다."
+    },
+    {
+      type:"글의순서",
+      question:"주어진 문장 다음에 이어질 글의 순서로 가장 적절한 것은?",
+      ref:"Increasing social mobility and competition between this merchant class and the aristocracy meant that by Shakespeare's time there was decreased confusion about who should use the term thou to whom.",
+      options:["(A)-(B)-(C)","(B)-(C)-(A)","(C)-(A)-(B)","(A)-(C)-(B)","(C)-(B)-(A)"],
+      answer:1,
+      explanation:"퀘이커 운동의 thou 사용(B) → 구분 소멸과 you만 존재(C) → 현재 archaizing 문체에서의 thou(A) 순이 자연스럽습니다."
+    }
+  ]
+},
+
+// ── 44 ─────────────────────────────────────────────────────
+{
+  num: "44",
+  title: "From Traditional Educational Models to Digital Models",
+  sentences: [
+    {
+      en: "The traditional model of education, (a) where students gather in physical classrooms to be instructed by a teacher, has been dominant for centuries.",
+      slash: "The traditional model of education, / where students gather in physical classrooms / to be instructed by a teacher, / has been dominant for centuries.",
+      kr: "학생들이 교사에게 지도받기 위해 물리적인 교실에 모이는 전통적인 교육 모델은 수 세기 동안 지배적이었다.",
+      grammar: [
+        {tag:"관계부사", body:"where students gather: 관계부사 where = in which. The traditional model을 수식."},
+        {tag:"현재완료", body:"has been dominant for centuries: 현재완료 + for + 기간 = 과거부터 현재까지 지속."}
+      ]
+    },
+    {
+      en: "However, the advent of the internet and digital tools has transformed education into a more dynamic and flexible experience.",
+      slash: "However, / the advent of the internet and digital tools / has transformed education / into a more dynamic and flexible experience.",
+      kr: "그러나 인터넷과 디지털 도구의 등장이 교육을 더욱 역동적이고 유연한 경험으로 변화시켰다.",
+      grammar: [
+        {tag:"수일치", body:"the advent ... has: 주어가 단수(advent)이므로 has. and로 연결된 internet and digital tools는 수식어."}
+      ]
+    },
+    {
+      en: "Digital classrooms, powered by online platforms, (b) allowing students to learn at their own pace, from any location, and often on their own schedules.",
+      slash: "Digital classrooms, / powered by online platforms, / allowing students to learn / at their own pace, / from any location, / and often on their own schedules.",
+      kr: "온라인 플랫폼으로 구동되는 디지털 교실은 학생들이 자신의 속도로, 어떤 장소에서든, 자주 자신의 일정에 따라 학습할 수 있게 한다.",
+      grammar: [
+        {tag:"분사구", body:"powered by online platforms: 과거분사구가 Digital classrooms를 후치 수식(수동)."},
+        {tag:"allowing", body:"allowing students to: 현재분사구 — 결과/부대상황. allow + O + to-v."}
+      ]
+    },
+    {
+      en: "This evolution from face-to-face instruction to online learning (c) has expanded access to education, especially for those in remote or underserved areas.",
+      slash: "This evolution / from face-to-face instruction to online learning / has expanded access to education, / especially for those in remote or underserved areas.",
+      kr: "대면 수업에서 온라인 학습으로의 이러한 진화는 특히 외딴 지역이나 소외된 지역의 사람들에게 교육 접근성을 확대했다.",
+      grammar: [
+        {tag:"현재완료", body:"has expanded: 현재완료 — 과거에 시작된 변화가 현재까지 영향."},
+        {tag:"those", body:"those in remote areas: those = people. 관계절 생략 — those who are in remote areas."}
+      ]
+    },
+    {
+      en: "Platforms like Coursera, edX, and Khan Academy have played a pivotal role in making high-quality educational content available to millions of learners globally.",
+      slash: "Platforms like Coursera, edX, and Khan Academy / have played a pivotal role / in making high-quality educational content / available to millions of learners globally.",
+      kr: "Coursera, edX, Khan Academy 같은 플랫폼들은 수백만 명의 전 세계 학습자들에게 고품질의 교육 콘텐츠를 이용 가능하게 하는 데 중추적인 역할을 했다.",
+      grammar: [
+        {tag:"make+O+형용사", body:"making ... content available: make + 목적어 + 형용사(목적격보어) '~를 …하게 만들다'."},
+        {tag:"play a role in", body:"played a pivotal role in making: play a role in + 동명사 관용표현."}
+      ]
+    },
+    {
+      en: "These platforms offer a diverse range of courses: from K-12 subjects to university-level programs, catering to the needs of learners of all ages and backgrounds.",
+      slash: "These platforms offer / a diverse range of courses: / from K-12 subjects / to university-level programs, / catering to the needs of learners / of all ages and backgrounds.",
+      kr: "이 플랫폼들은 K-12 과목부터 대학 수준의 프로그램까지 다양한 강좌를 제공하며, 모든 연령과 배경의 학습자들의 필요를 충족시킨다.",
+      grammar: [
+        {tag:"분사구문", body:"catering to the needs: 현재분사구문 — 부대상황/결과."},
+        {tag:"from A to B", body:"from K-12 subjects to university-level programs: 범위 표현."}
+      ]
+    },
+    {
+      en: "The rise of MOOCs has revolutionized the education landscape by (d) providing access to free or affordable courses from top universities and institutions around the world.",
+      slash: "The rise of MOOCs / has revolutionized the education landscape / by providing access / to free or affordable courses / from top universities and institutions around the world.",
+      kr: "MOOCs의 부상은 전 세계 최고 대학과 기관들의 무료 또는 저렴한 강좌에 대한 접근을 제공함으로써 교육 환경을 혁신했다.",
+      grammar: [
+        {tag:"by+동명사", body:"by providing access: 수단 부사구 '~함으로써'."},
+        {tag:"현재완료", body:"has revolutionized: 현재완료 — 변화의 결과가 현재까지 영향."}
+      ]
+    },
+    {
+      en: "MOOCs have democratized education, allowing students from developing nations, working professionals, and lifelong learners to access world-class education without the constraints of geography or financial barriers.",
+      slash: "MOOCs have democratized education, / allowing students from developing nations, / working professionals, / and lifelong learners / to access world-class education / without the constraints of geography or financial barriers.",
+      kr: "MOOCs는 교육을 민주화하여, 개발도상국 학생, 직장인, 평생 학습자들이 지리적·재정적 제약 없이 세계 최고의 교육에 접근할 수 있게 했다.",
+      grammar: [
+        {tag:"분사구문", body:"allowing students ... to access: 결과의 현재분사구문."},
+        {tag:"without+명사", body:"without the constraints: without + 명사구 = '~없이' 조건적 의미."}
+      ]
+    },
+    {
+      en: "Learners can access videos, readings, and assessments at (e) their convenience, making education more flexible and personalized.",
+      slash: "Learners can access / videos, readings, and assessments / at their convenience, / making education more flexible and personalized.",
+      kr: "학습자들은 자신의 편리한 시간에 동영상, 읽기 자료, 평가에 접근할 수 있어, 교육을 더 유연하고 개인화하게 만든다.",
+      grammar: [
+        {tag:"분사구문", body:"making education more flexible: 결과의 현재분사구문."},
+        {tag:"관용표현", body:"at their convenience: '편리한 시간에' — at one's convenience 관용구."}
+      ]
+    },
+    {
+      en: "This model challenges the traditional time-bound structure of education and opens up new possibilities for learning.",
+      slash: "This model challenges / the traditional time-bound structure of education / and opens up new possibilities for learning.",
+      kr: "이 모델은 교육의 전통적인 시간 제약 구조에 도전하고 학습의 새로운 가능성을 열어준다.",
+      grammar: [
+        {tag:"병렬", body:"challenges ... and opens up: 두 동사가 This model을 주어로 병렬."},
+        {tag:"구동사", body:"opens up: '열어주다, 가능하게 하다'의 구동사."}
+      ]
+    }
+  ],
+  grammar: [
+    {title:"관계부사 where (삽입절)", badge:"관계사", body:"<span class='eng'>The traditional model of education, where students gather</span>: 콤마 + where = 계속적 용법. the traditional model을 부연 설명. where = in which.", point:"출제포인트: 관계부사 계속적 용법 — 콤마 있음. 선행사가 장소·상황 명사."},
+    {title:"현재완료 (has been / has expanded)", badge:"시제", body:"<span class='eng'>has been dominant for centuries / has expanded access</span>: for + 기간과 함께 지속을 나타내는 현재완료.", point:"출제포인트: 현재완료 신호어 — for, since, already, yet, ever, never, just."},
+    {title:"make + O + 형용사 (5형식)", badge:"5형식", body:"<span class='eng'>making high-quality educational content available</span>: make + 목적어 + 형용사 보어. 목적어의 상태를 만들어냄.", point:"출제포인트: make + O + 형용사(보어) vs. make + O + 동사원형(사역) 구별."},
+    {title:"현재분사구문 (allowing / making)", badge:"분사", body:"<span class='eng'>allowing students to learn ... / making education more flexible</span>: 결과·부대상황의 현재분사구문. and it allows / makes와 동의.", point:"출제포인트: 분사구문 주어 = 주절 주어 확인. 능동(현재분사) vs. 수동(과거분사)."},
+    {title:"without + 명사구 (조건)", badge:"전치사", body:"<span class='eng'>without the constraints of geography or financial barriers</span>: without + 명사구 = unless there are constraints. 부정 조건 의미.", point:"출제포인트: without + 동명사 vs. without + 명사 — 의미 파악."}
+  ],
+  vocab: [
+    {word:"advent", pos:"n", meaning:"등장, 도래", example:"the advent of the internet"},
+    {word:"dynamic", pos:"adj", meaning:"역동적인", example:"a more dynamic experience"},
+    {word:"pivotal", pos:"adj", meaning:"중추적인, 핵심적인", example:"a pivotal role"},
+    {word:"democratize", pos:"v", meaning:"민주화하다", example:"democratized education"},
+    {word:"underserved", pos:"adj", meaning:"소외된, 서비스가 부족한", example:"remote or underserved areas"},
+    {word:"constraint", pos:"n", meaning:"제약, 제한", example:"constraints of geography"},
+    {word:"personalized", pos:"adj", meaning:"개인화된", example:"more flexible and personalized"},
+    {word:"revolutionize", pos:"v", meaning:"혁명적으로 변화시키다", example:"revolutionized the education landscape"}
+  ],
+  translation: "학생들이 교사에게 지도받기 위해 물리적인 교실에 모이는 전통적인 교육 모델은 수 세기 동안 지배적이었다. 그러나 인터넷과 디지털 도구의 등장이 교육을 더욱 역동적이고 유연한 경험으로 변화시켰다. 온라인 플랫폼으로 구동되는 디지털 교실은 학생들이 자신의 속도와 일정에 맞게 학습할 수 있게 한다. 대면 수업에서 온라인 학습으로의 진화는 특히 소외된 지역의 사람들에게 교육 접근성을 확대했다. Coursera, edX, Khan Academy 같은 플랫폼들은 수백만 명에게 고품질 교육을 제공하는 데 중추적 역할을 했다. MOOCs의 부상은 교육 환경을 혁신하여 지리적·재정적 제약 없이 세계 최고의 교육에 접근하게 했다. 학습자들은 편리한 시간에 동영상, 읽기, 평가에 접근할 수 있어 교육이 더 유연하고 개인화되었다. 이 모델은 전통적인 시간 제약 구조에 도전하고 새로운 가능성을 열어준다.",
+  topic: "전통적 교육 모델에서 디지털 모델로의 전환 — MOOCs의 역할과 교육 민주화",
+  gist: "인터넷과 디지털 도구의 발달이 전통적 교실 중심 교육을 디지털 교육으로 전환시키고, MOOCs를 통해 교육의 민주화와 접근성 확대가 이루어졌다.",
+  structure: [
+    {label:"도입", body:"수 세기 지배적이었던 전통 교육 모델 소개."},
+    {label:"전환", body:"인터넷·디지털 도구로 교육의 동적·유연한 변화 기술."},
+    {label:"전개①", body:"Coursera, edX, Khan Academy 등 플랫폼의 역할."},
+    {label:"전개②", body:"MOOCs의 등장 — 교육 민주화, 지리·재정 장벽 제거."},
+    {label:"결론", body:"자기 주도적 학습 가능 — 전통 시간 제약 구조에 도전."}
+  ],
+  quiz: [
+    {
+      type:"주제추론",
+      question:"다음 글의 주제로 가장 적절한 것은?",
+      ref:"",
+      options:["the history of classroom education around the world","how digital tools and MOOCs are transforming education","why Coursera and Khan Academy are popular platforms","the limitations of online education compared to traditional methods","how to choose the best online learning platform"],
+      answer:1,
+      explanation:"디지털 도구와 MOOCs가 교육을 어떻게 변화시키고 있는지가 글의 핵심 주제입니다."
+    },
+    {
+      type:"빈칸추론",
+      question:"다음 빈칸에 들어갈 말로 가장 적절한 것은?",
+      ref:"This model challenges the traditional time-bound structure of education and opens up ____.",
+      options:["stricter academic standards","new possibilities for learning","more financial barriers","traditional classroom experiences","limitations for developing nations"],
+      answer:1,
+      explanation:"디지털 교육 모델이 전통적 구조에 도전하고 새로운 학습 가능성을 열어준다는 문맥입니다."
+    },
+    {
+      type:"어법",
+      question:"밑줄 친 부분 중 어법상 틀린 것은?",
+      ref:"The traditional model of education, ① where students gather in classrooms, ② has been dominant for centuries. Platforms like Coursera ③ have played a pivotal role in ④ making high-quality content available. MOOCs have democratized education, ⑤ allowed students to access world-class education.",
+      options:["① where","② has been","③ have played","④ making","⑤ allowed → allowing"],
+      answer:4,
+      explanation:"결과·부대상황을 나타내는 분사구문이므로 현재분사 allowing이 와야 합니다. allowed → allowing."
+    },
+    {
+      type:"내용불일치",
+      question:"다음 글의 내용과 일치하지 않는 것은?",
+      ref:"",
+      options:["전통적인 교육 모델은 수 세기 동안 지배적이었다.","MOOCs는 무료 또는 저렴한 강좌에 대한 접근을 제공한다.","디지털 교실은 학생들이 어떤 장소에서든 학습할 수 있게 한다.","MOOCs는 개발도상국 학생들의 교육 접근성을 오히려 제한했다.","학습자들은 자신의 편리한 시간에 강의에 접근할 수 있다."],
+      answer:3,
+      explanation:"MOOCs는 개발도상국 학생들을 포함한 누구나 교육에 접근할 수 있게 민주화했다고 했으므로 ④는 사실과 반대입니다."
+    },
+    {
+      type:"글의순서",
+      question:"주어진 문장 다음에 이어질 글의 순서로 가장 적절한 것은?",
+      ref:"The rise of MOOCs has revolutionized the education landscape by providing access to free or affordable courses from top universities and institutions around the world.",
+      options:["(A)-(B)-(C)","(B)-(A)-(C)","(C)-(A)-(B)","(A)-(C)-(B)","(B)-(C)-(A)"],
+      answer:0,
+      explanation:"MOOCs의 교육 민주화(A) → 동료 학습과 자기 주도 학습 강조(B) → 전통 구조에 대한 도전과 결론(C) 순이 자연스럽습니다."
+    }
+  ]
+},
+
+// ── 45 ─────────────────────────────────────────────────────
+{
+  num: "45",
+  title: "Nostalgia and Preference",
+  sentences: [
+    {
+      en: "If you had a ten-year-old listen to some bandstand from the fifties, or even a mainstream rap video from the eighties or nineties, then showed them the best of what was being offered today, they would never listen to that old thing again.",
+      slash: "If you had a ten-year-old / listen to some bandstand from the fifties, / or even a mainstream rap video / from the eighties or nineties, / then showed them the best of what was being offered today, / they would never listen to that old thing again.",
+      kr: "만약 열 살짜리 아이에게 50년대 밴드스탠드나 80~90년대의 주류 랩 비디오를 듣게 하고, 오늘날 제공되는 최고의 것을 보여준다면, 그들은 다시는 그 낡은 것을 듣지 않을 것이다.",
+      grammar: [
+        {tag:"사역동사", body:"had a ten-year-old listen: have + 목적어 + 동사원형 — 사역동사."},
+        {tag:"가정법과거", body:"If you had ... showed ... they would never: 가정법 과거 — 현재 사실의 반대 가정."}
+      ]
+    },
+    {
+      en: "And yet, when they grew up, they might still listen to that music and play old games, and might even prefer them to whatever newer and greater thing came out in their twenties and thirties.",
+      slash: "And yet, / when they grew up, / they might still listen to that music / and play old games, / and might even prefer them / to whatever newer and greater thing / came out in their twenties and thirties.",
+      kr: "그럼에도 불구하고, 그들이 성장하면 20~30대에 나온 더 새롭고 훌륭한 것보다 그 음악을 여전히 듣고 오래된 게임을 하며 그것을 더 선호할 수도 있다.",
+      grammar: [
+        {tag:"whatever", body:"whatever newer and greater thing: 복합관계대명사 whatever = anything that. '무엇이든'."},
+        {tag:"prefer A to B", body:"prefer them to whatever: A를 B보다 더 좋아하다."}
+      ]
+    },
+    {
+      en: "Why? I hypothesize that our tastes and values, especially when it pertains to entertainment, have to do with the core memories we form as children, the stuff that wows us, that we have never seen before, that takes our breath away.",
+      slash: "Why? / I hypothesize / that our tastes and values, / especially when it pertains to entertainment, / have to do with the core memories / we form as children, / the stuff that wows us, / that we have never seen before, / that takes our breath away.",
+      kr: "왜 그럴까? 나는 우리의 취향과 가치관, 특히 오락과 관련될 때, 어린 시절 형성하는 핵심 기억들과 관련이 있다고 가정한다 — 우리를 놀라게 하고, 전에 본 적 없고, 우리의 숨을 멎게 하는 것들.",
+      grammar: [
+        {tag:"have to do with", body:"have to do with: '~와 관련이 있다'의 관용표현."},
+        {tag:"관계절병렬", body:"the stuff that wows us / that we have never seen / that takes: 세 관계절이 the stuff를 병렬 수식."}
+      ]
+    },
+    {
+      en: "These memories serve as the foundational bedrock for our understanding of the world and our nostalgia for the old days.",
+      slash: "These memories serve as / the foundational bedrock / for our understanding of the world / and our nostalgia for the old days.",
+      kr: "이러한 기억들은 세상에 대한 우리의 이해와 옛날에 대한 향수의 근본적인 기반 역할을 한다.",
+      grammar: [
+        {tag:"serve as", body:"serve as: '~의 역할을 하다'의 관용표현."},
+        {tag:"병렬", body:"for our understanding ... and our nostalgia: for에 걸리는 두 명사구 병렬."}
+      ]
+    },
+    {
+      en: "This is nothing groundbreaking.",
+      slash: "This is / nothing groundbreaking.",
+      kr: "이것은 특별히 획기적인 것이 아니다.",
+      grammar: [
+        {tag:"부정표현", body:"nothing groundbreaking: nothing + 형용사 후치 수식 '획기적인 것이 아닌'."}
+      ]
+    },
+    {
+      en: "There are plenty of others who have said this first and backed it up.",
+      slash: "There are plenty of others / who have said this first / and backed it up.",
+      kr: "이것을 먼저 말하고 뒷받침한 다른 사람들이 많이 있다.",
+      grammar: [
+        {tag:"유도부사", body:"There are plenty of others: there + be + 주어 유도부사 구문."},
+        {tag:"현재완료", body:"who have said ... and backed: 현재완료 — 과거부터 현재까지의 행위."}
+      ]
+    },
+    {
+      en: "Also, scientific studies have shown that exposure to new and unfamiliar experiences is essential for cognitive development and adaptability.",
+      slash: "Also, scientific studies have shown / that exposure to new and unfamiliar experiences / is essential / for cognitive development and adaptability.",
+      kr: "또한, 과학적 연구들은 새롭고 낯선 경험에의 노출이 인지 발달과 적응력에 필수적임을 보여주었다.",
+      grammar: [
+        {tag:"that절목적어", body:"have shown that exposure ... is essential: show + that절(목적어)."},
+        {tag:"수일치", body:"exposure ... is: 주어 exposure(단수) + 단수동사 is."}
+      ]
+    },
+    {
+      en: "It only makes sense that the people we idolize — athletes, musicians, movie stars — still hold our attention and appreciation as we grow old, and that the next wave cannot hold up through our more experienced, more cynical, and less forgiving eyes.",
+      slash: "It only makes sense / that the people we idolize / — athletes, musicians, movie stars — / still hold our attention and appreciation / as we grow old, / and that the next wave / cannot hold up / through our more experienced, more cynical, and less forgiving eyes.",
+      kr: "우리가 우상화하는 사람들 — 운동선수, 음악가, 영화배우 — 이 우리가 늙어가면서도 여전히 우리의 관심과 감사를 받는 것, 그리고 다음 세대가 더 경험이 풍부하고, 더 냉소적이며, 덜 관대한 우리의 시선을 견뎌내지 못한다는 것은 당연하다.",
+      grammar: [
+        {tag:"가주어진주어", body:"It only makes sense that: It이 가주어, that절 두 개(and that)가 진주어."},
+        {tag:"삽입구", body:"— athletes, musicians, movie stars —: 대시를 이용한 삽입 예시구."}
+      ]
+    },
+    {
+      en: "The same sense of wonder that inspires us as children, when we are so full of hope and possibility, is the one we ignore and put down as we grow older and become more focused on routine and responsibilities.",
+      slash: "The same sense of wonder / that inspires us as children, / when we are so full of hope and possibility, / is the one / we ignore and put down / as we grow older / and become more focused on routine and responsibilities.",
+      kr: "어린이로서 우리에게 영감을 주는 경이로움의 바로 그 감각은 — 우리가 희망과 가능성으로 가득 찼을 때 — 우리가 성장하고 일상과 책임에 더 집중하게 되면서 무시하고 깎아내리는 것이다.",
+      grammar: [
+        {tag:"관계절", body:"that inspires us as children: 주격 관계절이 The same sense of wonder 수식."},
+        {tag:"the same ~ that", body:"The same sense of wonder ... is the one we ignore: the same ~ that/as 패턴."}
+      ]
+    },
+    {
+      en: "The only difference is timing.",
+      slash: "The only difference / is timing.",
+      kr: "유일한 차이는 타이밍이다.",
+      grammar: [
+        {tag:"강조", body:"The only: only가 명사 앞에서 '유일한'의 의미로 강조."}
+      ]
+    }
+  ],
+  grammar: [
+    {title:"사역동사 have (have + O + 동사원형)", badge:"5형식", body:"<span class='eng'>had a ten-year-old listen to some bandstand</span>: have + 목적어 + 동사원형 = 사역. '~가 …하게 하다'.", point:"출제포인트: have + O + 동사원형(사역) vs. have + O + 과거분사(수동 사역) 구별."},
+    {title:"가정법 과거 (If + 과거, would 원형)", badge:"가정법", body:"<span class='eng'>If you had a ten-year-old listen ... they would never listen</span>: 현재 사실의 반대 가정. if절 과거, 주절 would + 원형.", point:"출제포인트: 가정법 과거 vs. 직설법 구별. if절에 were/과거동사, 주절에 would/could/might."},
+    {title:"복합관계대명사 whatever", badge:"관계사", body:"<span class='eng'>prefer them to whatever newer and greater thing came out</span>: whatever = anything that. 양보나 명사절 역할.", point:"출제포인트: whatever(무엇이든) / whoever / whenever / wherever / however + 절 구조."},
+    {title:"가주어 It ~ that절 (진주어)", badge:"구문", body:"<span class='eng'>It only makes sense that the people we idolize still hold our attention</span>: It이 형식 주어, that 이하가 진주어(2개 병렬).", point:"출제포인트: It makes sense that / It is true that 등 가주어 구문에서 진주어 범위 파악."},
+    {title:"have to do with (관용표현)", badge:"관용", body:"<span class='eng'>have to do with the core memories we form as children</span>: '~와 관련이 있다'. have nothing to do with = '~와 관련이 없다'.", point:"출제포인트: have to do with(관련 있다) vs. have to(~해야 한다) 혼동 주의."}
+  ],
+  vocab: [
+    {word:"bandstand", pos:"n", meaning:"밴드스탠드 음악(야외 공연)", example:"some bandstand from the fifties"},
+    {word:"hypothesize", pos:"v", meaning:"가정하다, 추측하다", example:"I hypothesize that"},
+    {word:"pertain", pos:"v", meaning:"관계하다, 해당하다", example:"when it pertains to entertainment"},
+    {word:"bedrock", pos:"n", meaning:"기반, 토대", example:"foundational bedrock"},
+    {word:"nostalgia", pos:"n", meaning:"향수(鄕愁)", example:"nostalgia for the old days"},
+    {word:"idolize", pos:"v", meaning:"우상화하다", example:"the people we idolize"},
+    {word:"cynical", pos:"adj", meaning:"냉소적인", example:"more experienced, more cynical"},
+    {word:"adaptability", pos:"n", meaning:"적응력", example:"cognitive development and adaptability"}
+  ],
+  translation: "만약 열 살짜리 아이에게 50년대 밴드스탠드나 80~90년대 랩 비디오를 듣게 하고 오늘날 최고의 것을 보여준다면, 그들은 다시는 낡은 것을 듣지 않을 것이다. 그럼에도 성장하면 20~30대에 더 좋은 것이 나와도 어릴 때 들은 음악과 게임을 여전히 선호할 수 있다. 나는 우리의 취향이 어린 시절 형성한 핵심 기억들, 즉 우리를 놀라게 하고 숨을 멎게 한 것들과 관련 있다고 가정한다. 이 기억들은 세상 이해와 향수의 근본 기반이다. 우리가 우상화하는 사람들이 늙어서도 우리의 관심을 받는 것, 그리고 새로운 물결이 경험 많고 냉소적인 우리의 시선을 견디지 못하는 것은 당연하다. 어린 시절 우리에게 영감을 준 경이감은 성장하며 일상과 책임에 집중할수록 무시하게 되는 것이다. 유일한 차이는 타이밍이다.",
+  topic: "향수와 선호 — 어린 시절 핵심 기억이 취향과 가치관을 형성하는 이유",
+  gist: "우리의 취향과 가치관은 어린 시절 형성된 핵심 기억에 기반하기 때문에, 성장 후에도 어릴 때 접한 음악·문화를 선호하는 향수 현상이 나타난다.",
+  structure: [
+    {label:"도입", body:"어릴 때 낡은 음악을 들으면 싫어하지만 성장 후 선호하게 되는 역설 제시."},
+    {label:"가설", body:"취향·가치관은 어린 시절 핵심 기억(경이감)과 관련 있다는 필자 주장."},
+    {label:"뒷받침", body:"과학적 연구: 새로운 경험이 인지 발달에 필수 — 어릴 때 더 수용적."},
+    {label:"결론", body:"어릴 때의 경이감은 성장 후 무시됨 — 유일한 차이는 타이밍."}
+  ],
+  quiz: [
+    {
+      type:"주제추론",
+      question:"다음 글의 주제로 가장 적절한 것은?",
+      ref:"",
+      options:["why modern music is better than music from the fifties","how childhood core memories shape our lasting tastes and nostalgia","the scientific study of cognitive development in children","why people prefer rap music to bandstand music","how entertainment has changed from the eighties to today"],
+      answer:1,
+      explanation:"어린 시절 핵심 기억이 성인 이후의 취향과 향수를 형성한다는 것이 글의 핵심 주제입니다."
+    },
+    {
+      type:"빈칸추론",
+      question:"밑줄 친 부분의 의미로 가장 적절한 것은?",
+      ref:"our tastes and values ... have to do with the core memories we form as children",
+      options:["are in conflict with","are unrelated to","are shaped by","are superior to","are independent of"],
+      answer:2,
+      explanation:"have to do with는 '~와 관련이 있다'는 의미로, 취향이 어린 시절 기억에 의해 형성된다는 뜻입니다."
+    },
+    {
+      type:"어법",
+      question:"밑줄 친 부분 중 어법상 틀린 것은?",
+      ref:"If you had a ten-year-old ① listen to some bandstand, they would never ② listen to that old thing again. I hypothesize that our tastes have to do with the core memories we ③ form as children. It only makes sense ④ that the people we idolize still hold our attention. The same sense of wonder ⑤ that inspiring us as children is the one we ignore.",
+      options:["① listen","② listen","③ form","④ that","⑤ that inspiring → that inspires"],
+      answer:4,
+      explanation:"관계절에서 주격 관계대명사 that 다음에는 동사가 와야 합니다. inspiring → inspires."
+    },
+    {
+      type:"내용불일치",
+      question:"다음 글의 내용과 일치하지 않는 것은?",
+      ref:"",
+      options:["어릴 때 접한 음악을 성장 후에도 선호할 수 있다.","과학적 연구들은 새로운 경험이 인지 발달에 중요하다고 보여준다.","우리의 취향은 어린 시절 형성된 핵심 기억과 관련이 있다.","성장할수록 경이감은 커지고 일상에 덜 집중하게 된다.","우리가 우상화하는 사람들은 나이가 들어서도 우리의 관심을 받는다."],
+      answer:3,
+      explanation:"성장할수록 일상과 책임에 더 집중하게 되면서 경이감을 무시하게 된다고 했으므로, ④는 사실과 반대입니다."
+    },
+    {
+      type:"글의순서",
+      question:"다음 문장이 들어가기에 가장 적절한 위치를 고르시오.",
+      ref:"Also, scientific studies have shown that exposure to new and unfamiliar experiences is essential for cognitive development and adaptability.",
+      options:["① 문장 뒤","② 문장 뒤","③ 문장 뒤","④ 문장 뒤","⑤ 문장 뒤"],
+      answer:2,
+      explanation:"This is nothing groundbreaking 다음에, 다른 연구자들의 뒷받침을 언급한 뒤 과학적 연구를 추가로 제시하는 흐름(③번 문장 뒤)이 자연스럽습니다."
+    }
+  ]
+}
+
+]; // end passages
+
+// ── STATE ──
+var currentPassage = 0;
+var currentTab = 0;
+var quizState = {};
+
+// ── NAVIGATION ──
+function selectPassage(idx) {
+  currentPassage = idx;
+  currentTab = 0;
+  document.querySelectorAll(".passage-btn").forEach(function(b,i){ b.classList.toggle("active", i===idx); });
+  document.querySelectorAll(".tab-btn").forEach(function(b,i){ b.classList.toggle("active", i===0); });
+  renderContent();
+}
+function selectTab(idx) {
+  currentTab = idx;
+  document.querySelectorAll(".tab-btn").forEach(function(b,i){ b.classList.toggle("active", i===idx); });
+  renderContent();
+}
+
+// ── RENDER ──
+function renderContent() {
+  var p = passages[currentPassage];
+  var area = document.getElementById("contentArea");
+  var html = "<div class='panel'>";
+  html += "<div class='passage-title'>" + p.num + ". " + p.title + "</div>";
+  html += "<div class='passage-meta'>올림포스 영미 비문학 읽기 &middot; Theme " + p.num + "</div>";
+  if (currentTab===0) html += renderFullText(p);
+  else if (currentTab===1) html += renderSentences(p);
+  else if (currentTab===2) html += renderGrammar(p);
+  else if (currentTab===3) html += renderVocab(p);
+  else if (currentTab===4) html += renderTranslation(p);
+  else if (currentTab===5) html += renderTopic(p);
+  else if (currentTab===6) html += renderQuiz(p);
+  html += "</div>";
+  area.innerHTML = html;
+}
+
+function renderFullText(p) {
+  var allSents = p.sentences.map(function(s){ return s.en; }).join(" ");
+  return "<h2 class='section-hd'>전문 (Full Text)</h2><div class='full-text-box'>" + allSents + "</div>";
+}
+
+function renderSentences(p) {
+  var html = "<h2 class='section-hd'>문장 분석</h2>";
+  p.sentences.forEach(function(s, i) {
+    html += "<div class='sentence-card'><span class='sentence-num'>문장 " + (i+1) + "</span>";
+    html += "<div class='sentence-eng'>" + s.en + "</div>";
+    html += "<div class='sentence-slash'>&#9670; 직독직해: " + s.slash + "</div>";
+    html += "<div class='sentence-kr'>&#127472;&#127479; " + s.kr + "</div>";
+    if (s.grammar.length > 0) {
+      html += "<div class='grammar-list'>";
+      s.grammar.forEach(function(g) {
+        html += "<div class='grammar-item'><span class='tag'>" + g.tag + "</span>" + g.body + "</div>";
+      });
+      html += "</div>";
+    }
+    html += "</div>";
+  });
+  return html;
+}
+
+function renderGrammar(p) {
+  var html = "<h2 class='section-hd'>문법 요소 총정리</h2>";
+  p.grammar.forEach(function(g, i) {
+    html += "<div class='grammar-section'><div class='grammar-title'><span class='badge'>" + g.badge + "</span>" + (i+1) + ". " + g.title + "</div>";
+    html += "<div class='grammar-body'>" + g.body + "</div>";
+    html += "<div class='grammar-body' style='margin-top:8px;color:var(--gold);font-size:0.78rem;'>&#128204; " + g.point + "</div></div>";
+  });
+  return html;
+}
+
+function renderVocab(p) {
+  var html = "<h2 class='section-hd'>핵심 단어</h2><div class='vocab-grid'>";
+  p.vocab.forEach(function(v) {
+    html += "<div class='vocab-card'><div><span class='vocab-word'>" + v.word + "</span><span class='vocab-pos'>" + v.pos + "</span></div>";
+    html += "<div class='vocab-meaning'>" + v.meaning + "</div><div class='vocab-example'>\"" + v.example + "\"</div></div>";
+  });
+  html += "</div>";
+  return html;
+}
+
+function renderTranslation(p) {
+  var html = "<h2 class='section-hd'>전문 해석</h2><div class='translation-box'>";
+  p.sentences.forEach(function(s, i) {
+    html += "<span class='sent'><span class='sent-num-inline'>" + (i+1) + "</span>" + s.kr + "</span>";
+  });
+  html += "</div>";
+  return html;
+}
+
+function renderTopic(p) {
+  var html = "<h2 class='section-hd'>주제 &middot; 요지 &middot; 구조</h2>";
+  html += "<div class='topic-box'><div class='topic-label'>주제 (Topic)</div><div class='topic-text'>" + p.topic + "</div></div>";
+  html += "<div class='topic-box' style='background:var(--navy-light);margin-top:-8px;'><div class='topic-label'>요지 (Main Idea)</div><div class='topic-text' style='font-size:0.92rem;font-weight:400;'>" + p.gist + "</div></div>";
+  html += "<h2 class='section-hd' style='margin-top:24px;'>글의 구조</h2><div class='structure-box'>";
+  p.structure.forEach(function(s) {
+    html += "<div class='structure-item'><span class='s-label'>" + s.label + "</span><span>" + s.body + "</span></div>";
+  });
+  html += "</div>";
+  return html;
+}
+
+function renderQuiz(p) {
+  var pIdx = currentPassage;
+  var answered = 0, correct = 0;
+  p.quiz.forEach(function(_, qIdx) {
+    var key = pIdx + "_" + qIdx;
+    if (quizState[key] !== undefined) { answered++; if (quizState[key]===true) correct++; }
+  });
+  var html = "<h2 class='section-hd'>변형문제</h2>";
+  html += "<div class='score-bar'><div><div class='score-label'>현재 점수</div></div><div class='score-val'>" + (answered>0?correct:"—") + " / " + p.quiz.length + "</div></div>";
+  p.quiz.forEach(function(q, qIdx) {
+    var key = pIdx + "_" + qIdx;
+    var isAnswered = quizState[key] !== undefined;
+    var isCorrect = quizState[key] === true;
+    html += "<div class='quiz-card'><div class='quiz-num'>문제 " + (qIdx+1) + "</div>";
+    html += "<div class='quiz-type'>" + q.type + "</div>";
+    html += "<div class='quiz-question'>" + q.question + "</div>";
+    if (q.ref) html += "<div class='quiz-passage-ref'>" + q.ref + "</div>";
+    html += "<div class='quiz-options'>";
+    q.options.forEach(function(opt, oIdx) {
+      var cls = "quiz-option";
+      if (isAnswered) {
+        cls += " disabled";
+        if (oIdx===q.answer) cls += " correct";
+        else if (quizState[pIdx+"_"+qIdx+"_sel"]===oIdx) cls += " wrong";
+      }
+      html += "<button class='" + cls + "' onclick='checkAnswer(" + pIdx + "," + qIdx + "," + oIdx + ")'>";
+      html += "<span class='opt-num'>" + (oIdx+1) + "</span><span>" + opt + "</span></button>";
+    });
+    html += "</div>";
+    var fbCls = "quiz-feedback" + (isAnswered?" show "+(isCorrect?"correct-fb":"wrong-fb"):"");
+    var fbText = isAnswered ? (isCorrect?"&#9989; 정답입니다! ":"&#10060; 오답입니다. ") + q.explanation : "";
+    html += "<div class='" + fbCls + "'>" + fbText + "</div>";
+    if (isAnswered) html += "<button class='quiz-reset' onclick='resetQuiz(" + pIdx + "," + qIdx + ")'>&#8635; 다시 풀기</button>";
+    html += "</div>";
+  });
+  return html;
+}
+
+// ── QUIZ LOGIC ──
+function checkAnswer(pIdx, qIdx, selectedIdx) {
+  var key = pIdx + "_" + qIdx;
+  if (quizState[key] !== undefined) return;
+  quizState[key] = passages[pIdx].quiz[qIdx].answer === selectedIdx;
+  quizState[pIdx+"_"+qIdx+"_sel"] = selectedIdx;
+  renderContent();
+}
+function resetQuiz(pIdx, qIdx) {
+  delete quizState[pIdx+"_"+qIdx];
+  delete quizState[pIdx+"_"+qIdx+"_sel"];
+  renderContent();
+}
+
+renderContent();
+</script>
+</body>
+</html>
